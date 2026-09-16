@@ -2,9 +2,26 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
-    { "source": "/", "destination": "/webgis/index.html" },
-    { "source": "/(.*)", "destination": "/webgis/$1" }
+  "builds": [
+    { "src": "webgis/index.html",   "use": "@vercel/static" },
+    { "src": "webgis/outputs.html", "use": "@vercel/static" },
+    { "src": "webgis/report.html",  "use": "@vercel/static" },
+    { "src": "webgis/styles.css",   "use": "@vercel/static" },
+    { "src": "webgis/app.js",       "use": "@vercel/static" },
+    { "src": "webgis/data/**",      "use": "@vercel/static" },
+    { "src": "webgis/images/**",    "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/webgis/index.html" },
+    { "src": "/index.html", "dest": "/webgis/index.html" },
+    { "src": "/outputs", "dest": "/webgis/outputs.html" },
+    { "src": "/outputs.html", "dest": "/webgis/outputs.html" },
+    { "src": "/report", "dest": "/webgis/report.html" },
+    { "src": "/report.html", "dest": "/webgis/report.html" },
+    { "src": "/styles.css", "dest": "/webgis/styles.css" },
+    { "src": "/app.js", "dest": "/webgis/app.js" },
+    { "src": "/data/(.*)", "dest": "/webgis/data/$1" },
+    { "src": "/images/(.*)", "dest": "/webgis/images/$1" }
   ],
   "headers": [
     {
