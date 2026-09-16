@@ -10,7 +10,7 @@
 [![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-[**🌐 Live WebGIS**](https://australia-env-monitoring.vercel.app) · [**📊 Outputs**](https://australia-env-monitoring.vercel.app/outputs.html) · [**📄 Report**](https://australia-env-monitoring.vercel.app/report.html)
+[**🌐 Live WebGIS**]([https://australia-env-monitoring.vercel.app](https://australia-environmental-monitoring.vercel.app)) · [**📊 Outputs**](https://australia-env-monitoring.vercel.app/outputs.html) · [**📄 Report**](https://australia-env-monitoring.vercel.app/report.html)
 
 </div>
 
