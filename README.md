@@ -2,15 +2,15 @@
 
 # 🛰️ Australia Environmental Monitoring
 
-**A cloud-native geospatial pipeline and interactive WebGIS for tracking six key environmental signals across Australia using Google Earth Engine.**
+**A cloud-native geospatial pipeline and interactive WebGIS for tracking seven environmental signals across Australia using Google Earth Engine.**
 
 [![Earth Engine](https://img.shields.io/badge/Google%20Earth%20Engine-4285F4?style=for-the-badge&logo=googleearth&logoColor=white)](https://earthengine.google.com)
-[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://australia-environmental-monitoring.vercel.app)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-[**🌐 Live WebGIS**]([https://australia-env-monitoring.vercel.app](https://australia-environmental-monitoring.vercel.app)) · [**📊 Outputs**](https://australia-env-monitoring.vercel.app/outputs.html) · [**📄 Report**](https://australia-env-monitoring.vercel.app/report.html)
+[**🌐 Live WebGIS**](https://australia-environmental-monitoring.vercel.app) · [**📊 Outputs**](https://australia-environmental-monitoring.vercel.app/outputs) · [**📄 Report**](https://australia-environmental-monitoring.vercel.app/report)
 
 </div>
 
@@ -18,7 +18,7 @@
 
 ## 📖 Overview
 
-This project monitors six environmental signals across the Australian continent (7.7 million km²) using freely available satellite data processed entirely in the cloud on **Google Earth Engine**. It delivers:
+This project monitors seven environmental signals across the Australian continent (7.7 million km²) using freely available satellite data processed entirely in the cloud on **Google Earth Engine**. It delivers:
 
 - 🗺️ An **interactive WebGIS** with 7 toggleable layers
 - 🖼️ Seven **high-resolution satellite maps** covering 2010–2023
@@ -47,15 +47,15 @@ All layers are regenerated on demand from open data — no local storage of rast
 
 <div align="center">
 
-### 🌐 [australia-env-monitoring.vercel.app](https://australia-env-monitoring.vercel.app)
+### 🌐 [australia-environmental-monitoring.vercel.app](https://australia-environmental-monitoring.vercel.app)
 
 </div>
 
 | Page | URL | Description |
 |------|-----|-------------|
-| **Map** | `/` | Interactive Leaflet WebGIS with layer toggles + opacity sliders |
-| **Outputs** | `/outputs.html` | Gallery of 7 static maps with lightbox zoom |
-| **Report** | `/report.html` | One-page methodology + key findings |
+| **Map** | https://australia-environmental-monitoring.vercel.app/ | Interactive Leaflet WebGIS with layer toggles + opacity sliders |
+| **Outputs** | https://australia-environmental-monitoring.vercel.app/outputs | Gallery of 7 static maps with lightbox zoom |
+| **Report** | https://australia-environmental-monitoring.vercel.app/report | One-page methodology + key findings |
 
 ---
 
@@ -64,22 +64,22 @@ All layers are regenerated on demand from open data — no local storage of rast
 <div align="center">
 
 ### 🔥 Burned Area 2021
-<img src="webgis/images/Burned_Area_2021.png" alt="Burned Area 2021" width="80%"/>
+<img src="images/Burned_Area_2021.png" alt="Burned Area 2021" width="80%"/>
 
 ### 🌿 NDVI Mean (2010–2021)
-<img src="webgis/images/NDVI_Australia_Mean.png" alt="NDVI Mean" width="80%"/>
+<img src="images/NDVI_Australia_Mean.png" alt="NDVI Mean" width="80%"/>
 
 ### 🌡️ Land Surface Temperature 2019
-<img src="webgis/images/LST_Australia_2019.png" alt="LST 2019" width="80%"/>
+<img src="images/LST_Australia_2019.png" alt="LST 2019" width="80%"/>
 
 ### 🌍 Land Cover 2022
-<img src="webgis/images/LULC_Australia_2022.png" alt="Land Cover 2022" width="80%"/>
+<img src="images/LULC_Australia_2022.png" alt="Land Cover 2022" width="80%"/>
 
 ### 🌲 Forest Loss 2020–2022
-<img src="webgis/images/Forest_Loss_2020_2022.png" alt="Forest Loss" width="80%"/>
+<img src="images/Forest_Loss_2020_2022.png" alt="Forest Loss" width="80%"/>
 
 ### 🔥 Fire Temperature Classes Oct 2023
-<img src="webgis/images/Fire_Categories_2023.png" alt="Fire Categories" width="80%"/>
+<img src="images/Fire_Categories_2023.png" alt="Fire Categories" width="80%"/>
 
 </div>
 
@@ -89,6 +89,16 @@ All layers are regenerated on demand from open data — no local storage of rast
 
 ```
 AUSTRALIA ENVIRONMENTAL MONITORING PROJECT/
+│
+├── index.html                                  # Map page (deployed at root)
+├── outputs.html                                # Gallery page
+├── report.html                                 # Report page
+├── styles.css                                  # Shared stylesheet
+├── app.js                                      # Leaflet + tile logic
+├── data/
+│   ├── tile_urls.json                          # GEE tile endpoints (auto-generated)
+│   └── layer_metadata.json                     # Layer configuration
+├── images/                                     # PNG copies for gallery
 │
 ├── AUSTRALIA ENVIRONMENTAL MONITORING.ipynb   # Main analysis notebook
 │
@@ -102,19 +112,8 @@ AUSTRALIA ENVIRONMENTAL MONITORING PROJECT/
 │
 ├── scripts/                                    # Python utilities
 │   ├── generate_tile_urls.py                  # Regenerate GEE tile URLs
-│   ├── copy_pngs.py                           # Copy PNGs to webgis/images/
+│   ├── copy_pngs.py                           # Copy PNGs to images/
 │   └── requirements.txt
-│
-├── webgis/                                     # Static WebGIS (deployed on Vercel)
-│   ├── index.html                             # Map page
-│   ├── outputs.html                           # Gallery page
-│   ├── report.html                            # Report page
-│   ├── styles.css                             # Shared stylesheet
-│   ├── app.js                                 # Leaflet + tile logic
-│   ├── data/
-│   │   ├── tile_urls.json                     # GEE tile endpoints (auto-generated)
-│   │   └── layer_metadata.json                # Layer configuration
-│   └── images/                                # PNG copies for gallery
 │
 ├── vercel.json                                 # Vercel deployment config
 ├── .gitignore
@@ -130,7 +129,7 @@ AUSTRALIA ENVIRONMENTAL MONITORING PROJECT/
 | **Data Processing** | Google Earth Engine (Python API) |
 | **Analysis** | Jupyter, `geemap`, `earthengine-api` |
 | **WebGIS** | Leaflet 1.9, vanilla JS, Google Fonts (Inter + Space Grotesk) |
-| **Deployment** | Vercel (static site + rewrites) |
+| **Deployment** | Vercel (static site) |
 | **Data Sources** | NASA, USGS, University of Maryland (Hansen GFC) |
 
 ---
@@ -177,7 +176,6 @@ python scripts/generate_tile_urls.py
 ### Run the WebGIS Locally
 
 ```bash
-cd webgis
 python -m http.server 8000
 # Open http://localhost:8000
 ```
@@ -192,9 +190,10 @@ python -m http.server 8000
 2. Go to [vercel.com/new](https://vercel.com/new)
 3. Import the repository
 4. **Framework Preset:** `Other`
-5. **Build Command:** leave empty
-6. **Output Directory:** leave empty
-7. Click **Deploy**
+5. **Root Directory:** `./` (default)
+6. **Build Command:** leave empty
+7. **Output Directory:** leave empty
+8. Click **Deploy**
 
 ### Method B — CLI
 
@@ -264,7 +263,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ## 👤 Author
 
-**Ghulam Abbas Zafari** · [Geolnzicht Platform](https://github.com/zafariabbas68)
+**Ghulam Abbas Zafari** · [GitHub](https://github.com/zafariabbas68)
 
 Built with ☕ and satellite data.
 
