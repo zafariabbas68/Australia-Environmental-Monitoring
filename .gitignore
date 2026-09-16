@@ -1,0 +1,24 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+service-account.json
+*.private_key.json
+.earthengine/
+
+# Large exports
+*.tif
+*.tiff
+GEE_Exports/
+exports_final/
+webgis/styles.css.backup

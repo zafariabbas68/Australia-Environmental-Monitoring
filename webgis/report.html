@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Report — Australia Environmental Monitoring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🛰️</span>
+    <div>
+      <h1>Australia Environmental Monitoring</h1>
+      <p>Burned area · Fire · LST · Land cover · NDVI · Forest loss</p>
+    </div>
+  </div>
+  <nav class="nav">
+    <a href="index.html" class="nav-link">🗺️ Map</a>
+    <a href="outputs.html" class="nav-link">🖼️ Outputs</a>
+    <a href="report.html" class="nav-link active">📄 Report</a>
+  </nav>
+  <div class="actions"></div>
+</header>
+
+<main class="page">
+
+  <section class="page-hero">
+    <span class="eyebrow">Documentation</span>
+    <h1>Project Report</h1>
+    <p>A concise overview of objectives, datasets, methodology, and key findings from the Australia Environmental Monitoring project.</p>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-strip">
+    <div class="stat-block">
+      <div class="stat-value">7</div>
+      <div class="stat-label">Environmental layers</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value">6</div>
+      <div class="stat-label">Satellite datasets</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value">2010–2023</div>
+      <div class="stat-label">Temporal coverage</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-value">7.7 M km²</div>
+      <div class="stat-label">Area analysed</div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="content-section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Overview</h2>
+    </div>
+    <p class="lead">
+      This project builds a cloud-native geospatial pipeline that monitors six key environmental signals across the Australian continent using freely available satellite data processed on Google Earth Engine. It delivers an interactive WebGIS, seven static map products, and a reproducible Python workflow.
+    </p>
+  </section>
+
+  <!-- DATA & METHODOLOGY -->
+  <section class="content-section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Data &amp; Methodology</h2>
+    </div>
+    <div class="dataset-grid">
+
+      <div class="dataset-card">
+        <span class="pill">Fire · Burned Area</span>
+        <h3>MODIS MCD64A1</h3>
+        <p>Monthly global burned-area product combining 500 m MODIS surface-reflectance imagery with a burn-sensitive vegetation index.</p>
+        <dl>
+          <dt>Resolution</dt><dd>500 m</dd>
+          <dt>Period</dt><dd>2021</dd>
+          <dt>Band</dt><dd>BurnDate</dd>
+        </dl>
+      </div>
+
+      <div class="dataset-card">
+        <span class="pill">Fire · Active</span>
+        <h3>VIIRS SNPP</h3>
+        <p>Near-real-time active-fire product from Suomi NPP, with 375 m resolution and multiple daily overpasses.</p>
+        <dl>
+          <dt>Resolution</dt><dd>375 m</dd>
+          <dt>Period</dt><dd>8–30 Oct 2023</dd>
+          <dt>Band</dt><dd>Bright_ti4 (K)</dd>
+        </dl>
+      </div>
+
+      <div class="dataset-card">
+        <span class="pill">Temperature</span>
+        <h3>MODIS MOD11A1</h3>
+        <p>Daily land surface temperature from the Terra satellite, corrected for atmospheric and emissivity effects.</p>
+        <dl>
+          <dt>Resolution</dt><dd>1 km</dd>
+          <dt>Period</dt><dd>2019 (annual)</dd>
+          <dt>Band</dt><dd>LST_Day_1km</dd>
+        </dl>
+      </div>
+
+      <div class="dataset-card">
+        <span class="pill">Vegetation</span>
+        <h3>MODIS MOD13A2</h3>
+        <p>16-day composite Normalized Difference Vegetation Index — the standard measure of vegetation vigour.</p>
+        <dl>
+          <dt>Resolution</dt><dd>1 km</dd>
+          <dt>Period</dt><dd>2010–2021</dd>
+          <dt>Aggregation</dt><dd>Monthly → Annual mean</dd>
+        </dl>
+      </div>
+
+      <div class="dataset-card">
+        <span class="pill">Land Cover</span>
+        <h3>MODIS MCD12C1</h3>
+        <p>Yearly global land cover at climate-model resolution, using IGBP classes remapped to eight groups.</p>
+        <dl>
+          <dt>Resolution</dt><dd>500 m</dd>
+          <dt>Period</dt><dd>2022</dd>
+          <dt>Band</dt><dd>Majority_Land_Cover_Type_1</dd>
+        </dl>
+      </div>
+
+      <div class="dataset-card">
+        <span class="pill">Forest Change</span>
+        <h3>Hansen GFC v1.11</h3>
+        <p>Landsat-derived stand-replacement forest loss, updated annually — the standard dataset for tracking forest dynamics.</p>
+        <dl>
+          <dt>Resolution</dt><dd>30 m</dd>
+          <dt>Period</dt><dd>2020–2022</dd>
+          <dt>Bands</dt><dd>loss, lossyear</dd>
+        </dl>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section class="content-section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Processing Pipeline</h2>
+    </div>
+    <ol class="pipeline">
+      <li>
+        <span class="step">01</span>
+        <div>
+          <h4>Ingest</h4>
+          <p>Six Earth Engine ImageCollections are filtered by date and Australia's national boundary.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step">02</span>
+        <div>
+          <h4>Reduce</h4>
+          <p>Temporal aggregations — mean, max, count — produce one summary image per layer.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step">03</span>
+        <div>
+          <h4>Classify</h4>
+          <p>Continuous variables (temperature, NDVI) are converted into discrete classes for clear visualisation.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step">04</span>
+        <div>
+          <h4>Serve</h4>
+          <p>Each layer is registered as a Google Earth Engine XYZ tile endpoint.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step">05</span>
+        <div>
+          <h4>Render</h4>
+          <p>Tile URLs are consumed by a Leaflet WebGIS with toggleable layers and opacity control.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step">06</span>
+        <div>
+          <h4>Archive</h4>
+          <p>Every map is exported as high-resolution PNG and as GeoTIFF to Google Drive.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- FINDINGS -->
+  <section class="content-section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Key Findings</h2>
+    </div>
+    <div class="findings-grid">
+
+      <div class="finding">
+        <span class="finding-icon">🔥</span>
+        <h4>Fire dominates northern savannas</h4>
+        <p>Over 90% of VIIRS detections in October 2023 occurred in the tropical savannas of the Northern Territory and Queensland — a region that burns annually during the late dry season.</p>
+      </div>
+
+      <div class="finding">
+        <span class="finding-icon">🌡️</span>
+        <h4>Deserts exceed 45 °C seasonally</h4>
+        <p>Mean daytime LST in 2019 exceeded 45 °C across the Great Victoria and Gibson deserts, while coastal Tasmania and Victoria averaged below 20 °C.</p>
+      </div>
+
+      <div class="finding">
+        <span class="finding-icon">🌿</span>
+        <h4>Sharp coast-to-interior gradient</h4>
+        <p>Mean NDVI for 2010–2021 exceeded 0.6 along the east coast and southwest forests, but stayed below 0.15 across the central arid zone.</p>
+      </div>
+
+      <div class="finding">
+        <span class="finding-icon">🌲</span>
+        <h4>Forest loss concentrated in the east</h4>
+        <p>Between 2020 and 2022, measurable forest loss occurred primarily in NSW and southeast Queensland — coinciding with post-bushfire recovery and ongoing land-use change.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REPRODUCIBILITY -->
+  <section class="content-section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>Reproducibility</h2>
+    </div>
+    <div class="repro-box">
+      <p>All layers are generated from freely available datasets via the Google Earth Engine Python API. The complete pipeline lives in a Jupyter notebook plus three helper scripts.</p>
+      <ul class="check-list">
+        <li>Python 3.10+ with <code>earthengine-api</code> and <code>geemap</code></li>
+        <li>Jupyter notebook for the analysis</li>
+        <li>Static HTML / CSS / JS WebGIS deployed on Vercel</li>
+        <li>All inputs open-licensed — NASA, USGS, University of Maryland</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="credits">
+    <p><strong>Ghulam Abbas Zafari</strong> · Geolnzicht Platform · 2026</p>
+    <p>Open satellite data processed on Google Earth Engine. Outputs provided for research and education.</p>
+  </footer>
+
+</main>
+
+</body>
+</html>
