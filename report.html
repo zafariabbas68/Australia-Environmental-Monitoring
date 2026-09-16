@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a111f" />
 <title>Report — Australia Environmental Monitoring</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,23 +20,24 @@
       <p>Burned area · Fire · LST · Land cover · NDVI · Forest loss</p>
     </div>
   </div>
-  <nav class="nav">
+  <nav class="nav" id="mainNav">
     <a href="index.html" class="nav-link">🗺️ Map</a>
     <a href="outputs.html" class="nav-link">🖼️ Outputs</a>
     <a href="report.html" class="nav-link active">📄 Report</a>
   </nav>
-  <div class="actions"></div>
+  <div class="actions">
+    <button class="menu-toggle" id="menuToggle" title="Menu" aria-label="Open menu">☰</button>
+  </div>
 </header>
 
 <main class="page">
 
-  <section class="page-hero">
+  <div class="page-hero">
     <span class="eyebrow">Documentation</span>
     <h1>Project Report</h1>
     <p>A concise overview of objectives, datasets, methodology, and key findings from the Australia Environmental Monitoring project.</p>
-  </section>
+  </div>
 
-  <!-- STATS -->
   <section class="stats-strip">
     <div class="stat-block">
       <div class="stat-value">7</div>
@@ -55,18 +57,16 @@
     </div>
   </section>
 
-  <!-- OVERVIEW -->
   <section class="content-section">
     <div class="section-head">
       <span class="section-num">01</span>
       <h2>Overview</h2>
     </div>
     <p class="lead">
-      This project builds a cloud-native geospatial pipeline that monitors six key environmental signals across the Australian continent using freely available satellite data processed on Google Earth Engine. It delivers an interactive WebGIS, seven static map products, and a reproducible Python workflow.
+      This project builds a cloud-native geospatial pipeline that monitors seven environmental signals across the Australian continent using freely available satellite data processed on Google Earth Engine. It delivers an interactive WebGIS, seven static map products, and a reproducible Python workflow.
     </p>
   </section>
 
-  <!-- DATA & METHODOLOGY -->
   <section class="content-section">
     <div class="section-head">
       <span class="section-num">02</span>
@@ -102,7 +102,7 @@
         <p>Daily land surface temperature from the Terra satellite, corrected for atmospheric and emissivity effects.</p>
         <dl>
           <dt>Resolution</dt><dd>1 km</dd>
-          <dt>Period</dt><dd>2019 (annual)</dd>
+          <dt>Period</dt><dd>2019</dd>
           <dt>Band</dt><dd>LST_Day_1km</dd>
         </dl>
       </div>
@@ -143,7 +143,6 @@
     </div>
   </section>
 
-  <!-- PIPELINE -->
   <section class="content-section">
     <div class="section-head">
       <span class="section-num">03</span>
@@ -168,7 +167,7 @@
         <span class="step">03</span>
         <div>
           <h4>Classify</h4>
-          <p>Continuous variables (temperature, NDVI) are converted into discrete classes for clear visualisation.</p>
+          <p>Continuous variables are converted into discrete classes for clear visualisation.</p>
         </div>
       </li>
       <li>
@@ -195,7 +194,6 @@
     </ol>
   </section>
 
-  <!-- FINDINGS -->
   <section class="content-section">
     <div class="section-head">
       <span class="section-num">04</span>
@@ -206,13 +204,13 @@
       <div class="finding">
         <span class="finding-icon">🔥</span>
         <h4>Fire dominates northern savannas</h4>
-        <p>Over 90% of VIIRS detections in October 2023 occurred in the tropical savannas of the Northern Territory and Queensland — a region that burns annually during the late dry season.</p>
+        <p>Over 90% of VIIRS detections in October 2023 occurred in the tropical savannas of the Northern Territory and Queensland.</p>
       </div>
 
       <div class="finding">
         <span class="finding-icon">🌡️</span>
         <h4>Deserts exceed 45 °C seasonally</h4>
-        <p>Mean daytime LST in 2019 exceeded 45 °C across the Great Victoria and Gibson deserts, while coastal Tasmania and Victoria averaged below 20 °C.</p>
+        <p>Mean daytime LST in 2019 exceeded 45 °C across the Great Victoria and Gibson deserts, while Tasmania and Victoria averaged below 20 °C.</p>
       </div>
 
       <div class="finding">
@@ -224,13 +222,12 @@
       <div class="finding">
         <span class="finding-icon">🌲</span>
         <h4>Forest loss concentrated in the east</h4>
-        <p>Between 2020 and 2022, measurable forest loss occurred primarily in NSW and southeast Queensland — coinciding with post-bushfire recovery and ongoing land-use change.</p>
+        <p>Between 2020 and 2022, measurable forest loss occurred primarily in NSW and southeast Queensland.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- REPRODUCIBILITY -->
   <section class="content-section">
     <div class="section-head">
       <span class="section-num">05</span>
@@ -253,6 +250,16 @@
   </footer>
 
 </main>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('mobile-open');
+    });
+  }
+</script>
 
 </body>
 </html>
