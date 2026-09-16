@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Australia Environmental Monitoring — WebGIS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🛰️</span>
+    <div>
+      <h1>Australia Environmental Monitoring</h1>
+      <p>Burned area · Fire · LST · Land cover · NDVI · Forest loss</p>
+    </div>
+  </div>
+  <nav class="nav">
+    <a href="index.html" class="nav-link active">🗺️ Map</a>
+    <a href="outputs.html" class="nav-link">🖼️ Outputs</a>
+    <a href="report.html" class="nav-link">📄 Report</a>
+  </nav>
+  <div class="actions">
+    <button id="fitBtn" title="Fit to Australia">🇦🇺 Fit AU</button>
+    <button id="togglePanel" title="Toggle layer panel">☰ Layers</button>
+  </div>
+</header>
+
+<!-- ============ CENTERED TITLE ============ -->
+<div class="hero-title">
+  <h2>Environmental Change Observatory</h2>
+  <p>Interactive satellite monitoring for the Australian continent · 2010–2023</p>
+</div>
+
+<!-- ============ LAYER PANEL (LEFT) ============ -->
+<aside class="layer-panel" id="layerPanel">
+  <h2>Layers</h2>
+  <div id="layerList"><em>Loading layers…</em></div>
+  <div class="basemap-switch">
+    <label><input type="radio" name="basemap" value="imagery" checked> Satellite</label>
+    <label><input type="radio" name="basemap" value="streets"> Streets</label>
+    <label><input type="radio" name="basemap" value="terrain"> Terrain</label>
+  </div>
+</aside>
+
+<!-- ============ LEGEND (RIGHT) ============ -->
+<div class="legend-box" id="legendBox" hidden>
+  <h3 id="legendTitle">Legend</h3>
+  <div id="legendItems"></div>
+</div>
+
+<!-- ============ MAP ============ -->
+<div id="map"></div>
+
+<!-- ============ COORDS ============ -->
+<div class="coords" id="coords">Move mouse over map…</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <span id="timestamp">—</span>
+  <span>·</span>
+  <span>Data: NASA / USGS / MODIS · Hansen GFC · VIIRS</span>
+  <span>·</span>
+  <a href="https://earthengine.google.com" target="_blank" rel="noopener">Powered by Google Earth Engine</a>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+{
+  "layers": [
+    {
+      "key": "lulc",
+      "name": "Land Cover 2022",
+      "description": "MODIS MCD12C1 · 500 m · 8 classes",
+      "icon": "🌍",
+      "defaultOn": true,
+      "defaultOpacity": 0.75,
+      "png": "images/LULC_Australia_2022.png",
+      "legend": [
+        { "label": "Water",      "color": "#0000ff" },
+        { "label": "Forest",     "color": "#008000" },
+        { "label": "Shrubs",     "color": "#ffff00" },
+        { "label": "Grass",      "color": "#ffa500" },
+        { "label": "Cropland",   "color": "#ff0000" },
+        { "label": "Mixed Land", "color": "#808080" },
+        { "label": "Sparse",     "color": "#ffffff" },
+        { "label": "Snow / Ice", "color": "#00ffff" }
+      ]
+    },
+    {
+      "key": "ndvi",
+      "name": "NDVI Mean (2010–2021)",
+      "description": "MODIS MOD13A2 · annual mean",
+      "icon": "🌿",
+      "defaultOn": true,
+      "defaultOpacity": 0.55,
+      "png": "images/NDVI_Australia_Mean.png",
+      "legend": [
+        { "label": "Bare / sparse", "color": "#8B4513" },
+        { "label": "Low",           "color": "#FFFFE0" },
+        { "label": "Moderate",      "color": "#ADFF2F" },
+        { "label": "Healthy",       "color": "#228B22" },
+        { "label": "Dense",         "color": "#006400" }
+      ]
+    },
+    {
+      "key": "lst",
+      "name": "Land Surface Temp 2019",
+      "description": "MODIS MOD11A1 · daytime mean (°C)",
+      "icon": "🌡️",
+      "defaultOn": true,
+      "defaultOpacity": 0.65,
+      "png": "images/LST_Australia_2019.png",
+      "legend": [
+        { "label": "10 °C",  "color": "#0000ff" },
+        { "label": "20 °C",  "color": "#32cd32" },
+        { "label": "30 °C",  "color": "#ffff00" },
+        { "label": "40 °C",  "color": "#ff8c00" },
+        { "label": "45+ °C", "color": "#ff0000" }
+      ]
+    },
+    {
+      "key": "burned",
+      "name": "Burned Area 2021",
+      "description": "MODIS MCD64A1 · burn date (day of year)",
+      "icon": "🔥",
+      "defaultOn": true,
+      "defaultOpacity": 0.85,
+      "png": "images/Burned_Area_2021.png",
+      "legend": [
+        { "label": "Early (day 30)",  "color": "#ffffcc" },
+        { "label": "Mid (day 180)",   "color": "#fd8d3c" },
+        { "label": "Late (day 355)",  "color": "#800026" }
+      ]
+    },
+    {
+      "key": "forest_loss",
+      "name": "Forest Loss 2020–2022",
+      "description": "Hansen GFC v1.11 · loss pixels",
+      "icon": "🌲",
+      "defaultOn": true,
+      "defaultOpacity": 0.9,
+      "png": "images/Forest_Loss_2020_2022.png",
+      "legend": [
+        { "label": "Loss", "color": "#ff0000" }
+      ]
+    },
+    {
+      "key": "fire",
+      "name": "Fire Categories Oct 2023",
+      "description": "VIIRS · Bright_ti4 temperature classes",
+      "icon": "🔥",
+      "defaultOn": false,
+      "defaultOpacity": 0.9,
+      "png": "images/Fire_Categories_2023.png",
+      "legend": [
+        { "label": "Cool (300–320 K)",     "color": "#ffff00" },
+        { "label": "Moderate (320–340 K)", "color": "#ffa500" },
+        { "label": "Hot (340–360 K)",      "color": "#ff0000" },
+        { "label": "Very Hot (360–380 K)", "color": "#ffffff" },
+        { "label": "Extreme (>380 K)",     "color": "#8b0000" }
+      ]
+    },
+    {
+      "key": "fire_count",
+      "name": "Fire Detection Count Oct 2023",
+      "description": "VIIRS · detections per pixel",
+      "icon": "🔥",
+      "defaultOn": false,
+      "defaultOpacity": 0.8,
+      "png": "images/Fire_Count_2023.png",
+      "legend": [
+        { "label": "1",   "color": "#440154" },
+        { "label": "5",   "color": "#3b528b" },
+        { "label": "10",  "color": "#21918c" },
+        { "label": "15",  "color": "#5ec962" },
+        { "label": "20+", "color": "#fde725" }
+      ]
+    }
+  ]
+}

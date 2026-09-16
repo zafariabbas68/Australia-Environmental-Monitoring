@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-09-15T20:53:57.226077Z",
+  "tiles": {
+    "burned": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/8a80d6e7b9feb4c25a4ebac0d15a5101-e793fdc781df978032a22a0d2b8679bb/tiles/{z}/{x}/{y}",
+    "fire": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/c0a8f0c9fc2ae97fbc47098827f584b5-34e7e4b4d4d09a37a99c3a2e60e72efe/tiles/{z}/{x}/{y}",
+    "fire_count": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/be212600ec0c7f2c26b1d58479b4dbc8-5b1f7325791b30cbd1654498890c74db/tiles/{z}/{x}/{y}",
+    "lst": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/4a05f9e4f653b04e489a2420c8f1affe-b25789427afd60b9e646b95dde22526e/tiles/{z}/{x}/{y}",
+    "lulc": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/f35860b2e3069c788afa34325710aa7a-d960d0955f7d577a12d801bf9dfe3391/tiles/{z}/{x}/{y}",
+    "ndvi": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/40a531ca14c5d32383f35dced372251e-50dfaccc99a0574c11fe735d57372123/tiles/{z}/{x}/{y}",
+    "forest_loss": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/d2fb4df73dd5784f53a2a3ed147aac92-47a3b9eb27da5c003e114470a5b763ae/tiles/{z}/{x}/{y}"
+  }
+}
