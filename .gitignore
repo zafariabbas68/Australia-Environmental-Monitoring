@@ -22,3 +22,31 @@ service-account.json
 GEE_Exports/
 exports_final/
 webgis/styles.css.backup
+
+# ============================================================
+# Enrichment additions
+# ============================================================
+
+# Python package
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+src/aem.egg-info/
+
+# Large geospatial files (keep only small metadata)
+data/raw/*
+data/interim/*
+data/processed/*
+data/validation/*
+!data/**/.gitkeep
+!data/**/*.json
+!data/**/*.geojson
+
+# Test outputs
+.coverage
+htmlcov/
+
+# Local env
+.env

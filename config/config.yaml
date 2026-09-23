@@ -1,0 +1,48 @@
+project:
+  name: "Australia Environmental Monitoring"
+  version: "0.2.0"
+  country: "Australia"
+  crs: "EPSG:4326"
+  bbox: [112.0, -44.5, 154.0, -9.0]
+
+roi:
+  source: "FAO/GAUL_SIMPLIFIED_500m/2015/level0"
+  filter_property: "ADM0_NAME"
+  filter_value: "Australia"
+
+periods:
+  baseline: ["2010-01-01", "2020-12-31"]
+  recent:   ["2021-01-01", "2024-12-31"]
+  current_year: 2024
+  trend_years: [2015, 2024]
+
+datasets:
+  lst:
+    id: "MODIS/061/MOD11A1"
+    band: "LST_Day_1km"
+    qa_band: "QC_Day"
+    scale_factor: 0.02
+    offset: -273.15
+    scale: 1000
+    qa_good_values: [0, 1]
+  ndvi:
+    id: "MODIS/061/MOD13A2"
+    band: "NDVI"
+    qa_band: "SummaryQA"
+    scale_factor: 0.0001
+    scale: 1000
+    qa_good_values: [0]
+
+analysis:
+  trend:
+    method: "mann_kendall"
+    alpha: 0.05
+  fire_severity:
+    nbr_pre_days: 60
+    nbr_post_days: 90
+    dNBR_classes: [100, 270, 440, 660]
+
+export:
+  drive_folder: "AEM_Scientific_Exports"
+  png_dpi: 300
+  png_background: "#000000"
