@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-09-23T17:28:23.953111Z",
+  "period": "2005-2023",
+  "variable": "LST",
+  "units": "Celsius per year",
+  "method": "Theil-Sen slope on monthly LST anomalies",
+  "threshold": 0.02,
+  "statistics": {
+    "slope_mean": 0.0,
+    "slope_min": -0.15,
+    "slope_max": 0.15,
+    "slope_stdDev": 0.02
+  },
+  "tiles": {
+    "slope": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/deb7cc34691a96042713d0e67e6e4c12-24212ae53637489bfaf6fbdabbce53ea/tiles/{z}/{x}/{y}",
+    "class": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/54338cf7f39c9a723b5cba300bb4f5c2-4a2ae962ad6d48e2a79011e6670ef144/tiles/{z}/{x}/{y}"
+  },
+  "legend": {
+    "slope": {
+      "title": "LST anomaly trend (C/year)",
+      "min": -0.05,
+      "max": 0.05,
+      "stops": [
+        {
+          "value": -0.05,
+          "color": "#2c7bb6",
+          "label": "-0.05"
+        },
+        {
+          "value": 0.0,
+          "color": "#ffffff",
+          "label": "0"
+        },
+        {
+          "value": 0.05,
+          "color": "#d7191c",
+          "label": "+0.05"
+        }
+      ]
+    },
+    "class": {
+      "title": "Warming / cooling (Theil-Sen)",
+      "stops": [
+        {
+          "value": 0,
+          "color": "#95a5a6",
+          "label": "No trend (|slope| < 0.02 C/yr)"
+        },
+        {
+          "value": 1,
+          "color": "#d7191c",
+          "label": "Significant warming"
+        },
+        {
+          "value": 2,
+          "color": "#2c7bb6",
+          "label": "Significant cooling"
+        }
+      ]
+    }
+  }
+}
