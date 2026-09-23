@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a111f" />
+<title>NDVI Trends — Australia Environmental Monitoring</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="../styles.css" />
+
+<style>
+  #trend-map {
+    position: absolute;
+    top: 64px; left: 0; right: 0; bottom: 0;
+    z-index: 1;
+  }
+  .trend-title {
+    position: absolute;
+    top: 76px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 1100;
+    text-align: center;
+    padding: 10px 24px;
+    background: rgba(10, 17, 31, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(34, 211, 238, 0.25);
+    border-radius: 14px;
+    pointer-events: none;
+    max-width: 90%;
+  }
+  .trend-title h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(15px, 2.2vw, 22px);
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 0%, #67e8f9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .trend-title p {
+    margin: 3px 0 0;
+    font-size: 11.5px;
+    color: var(--text-dim);
+  }
+
+  .stats-panel {
+    position: absolute;
+    top: 170px; left: 16px;
+    z-index: 1100;
+    background: rgba(19, 28, 46, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    min-width: 260px;
+    box-shadow: var(--shadow);
+  }
+  .stats-panel h3 {
+    margin: 0 0 12px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    font-size: 13px;
+  }
+  .stat-row .label { color: var(--text-dim); }
+  .stat-row .value {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--accent-hi);
+  }
+
+  .trend-legend {
+    position: absolute;
+    bottom: 70px; left: 16px;
+    z-index: 1100;
+    background: rgba(19, 28, 46, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    box-shadow: var(--shadow);
+    min-width: 280px;
+    font-size: 12.5px;
+  }
+  .trend-legend h4 {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .legend-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px 0;
+    color: var(--text-dim);
+  }
+  .legend-swatch {
+    width: 20px; height: 14px; border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+  .legend-gradient {
+    width: 100%; height: 14px; border-radius: 4px;
+    margin: 8px 0 4px;
+    background: linear-gradient(90deg, #c0392b 0%, #ffffff 50%, #27ae60 100%);
+  }
+  .legend-gradient-labels {
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .mode-toggle {
+    position: absolute;
+    top: 76px; right: 16px;
+    z-index: 1100;
+    background: rgba(19, 28, 46, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 6px;
+    display: flex;
+    gap: 4px;
+  }
+  .mode-toggle button {
+    background: transparent;
+    color: var(--text-dim);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: var(--font-body);
+  }
+  .mode-toggle button.active {
+    background: var(--accent);
+    color: #08121c;
+    font-weight: 600;
+  }
+  .mode-toggle button:not(.active):hover {
+    background: var(--accent-soft);
+    color: var(--accent-hi);
+  }
+
+  @media (max-width: 768px) {
+    .stats-panel, .trend-legend {
+      position: relative;
+      top: auto; left: auto; bottom: auto;
+      margin: 0 8px 8px 8px;
+      min-width: 0;
+    }
+    .stats-panel { margin-top: 150px; }
+    .mode-toggle { top: 74px; right: 8px; }
+    .trend-title { top: 70px; padding: 8px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🛰️</span>
+    <div>
+      <h1>Australia Environmental Monitoring</h1>
+      <p>Trends · NDVI 2015–2024</p>
+    </div>
+  </div>
+  <nav class="nav" id="mainNav">
+    <a href="../index.html" class="nav-link">🗺️ Map</a>
+    <a href="../outputs.html" class="nav-link">🖼️ Outputs</a>
+    <a href="../report.html" class="nav-link">📄 Report</a>
+    <a href="index.html" class="nav-link active">📈 Trends</a>
+  </nav>
+  <div class="actions">
+    <button id="fitBtn" title="Fit to Australia">🇦🇺 Fit AU</button>
+    <button class="menu-toggle" id="menuToggle" title="Menu" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<div class="trend-title">
+  <h2>NDVI Trend · Australia 2015–2024</h2>
+  <p>Per-pixel OLS slope on QA-masked MODIS MOD13A2</p>
+</div>
+
+<div class="mode-toggle">
+  <button id="modeClassBtn" class="active" data-mode="class">Classified</button>
+  <button id="modeSlopeBtn" data-mode="slope">Continuous</button>
+</div>
+
+<div id="trend-map"></div>
+
+<aside class="stats-panel" id="statsPanel">
+  <h3>Statistics</h3>
+  <div id="statsContent"><em>Loading…</em></div>
+</aside>
+
+<div class="trend-legend" id="legendBox">
+  <h4 id="legendTitle">Legend</h4>
+  <div id="legendContent"></div>
+</div>
+
+<footer class="footer">
+  <span id="timestamp">—</span>
+  <span>·</span>
+  <span>OLS slope on QA-masked NDVI · 2015–2024</span>
+  <span>·</span>
+  <a href="https://earthengine.google.com" target="_blank" rel="noopener">Powered by GEE</a>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const DATA_URL = '../data/trends_tile.json';
+const AU_BBOX = [[-44.5, 112.0], [-8.0, 154.0]];
+
+const map = L.map('trend-map', {
+  center: [-25.5, 134.0],
+  zoom: 4,
+  zoomControl: true,
+  preferCanvas: true,
+});
+
+L.tileLayer(
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  { attribution: '© Esri, Maxar', maxZoom: 19 }
+).addTo(map);
+
+L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
+
+let tileData = null;
+let slopeLayer = null;
+let classLayer = null;
+let currentMode = 'class';
+
+fetch(DATA_URL)
+  .then(r => r.json())
+  .then(data => {
+    tileData = data;
+    buildLayers();
+    renderStats();
+    renderLegend(currentMode);
+    updateTimestamp(data.generated_at);
+  })
+  .catch(err => {
+    document.getElementById('statsContent').innerHTML =
+      `<span style="color:#f87171">Failed to load trends data.<br>
+       <small>${err.message}</small></span>`;
+    console.error(err);
+  });
+
+function buildLayers() {
+  slopeLayer = L.tileLayer(tileData.tiles.slope, {
+    attribution: 'GEE · OLS slope NDVI',
+    maxZoom: 18,
+    opacity: 0.9,
+    crossOrigin: true,
+  });
+  classLayer = L.tileLayer(tileData.tiles.class, {
+    attribution: 'GEE · Classified trend',
+    maxZoom: 18,
+    opacity: 0.9,
+    crossOrigin: true,
+  });
+  classLayer.addTo(map);
+}
+
+document.getElementById('modeClassBtn').addEventListener('click', () => setMode('class'));
+document.getElementById('modeSlopeBtn').addEventListener('click', () => setMode('slope'));
+
+function setMode(mode) {
+  if (mode === currentMode) return;
+  currentMode = mode;
+  document.querySelectorAll('.mode-toggle button').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === mode);
+  });
+  if (mode === 'class') {
+    map.removeLayer(slopeLayer);
+    classLayer.addTo(map);
+  } else {
+    map.removeLayer(classLayer);
+    slopeLayer.addTo(map);
+  }
+  renderLegend(mode);
+}
+
+function renderStats() {
+  const s = tileData.statistics;
+  const period = tileData.period || '2015–2024';
+  const mean = s.slope_mean;
+  const interp = mean > 0 ? 'Greening' : mean < 0 ? 'Browning' : 'No trend';
+
+  const rows = [
+    ['Period', period],
+    ['Mean slope', `${mean >= 0 ? '+' : ''}${mean.toFixed(6)} /yr`],
+    ['Min / Max', `${s.slope_min.toFixed(4)} … ${s.slope_max.toFixed(4)}`],
+    ['Std dev', s.slope_stdDev.toFixed(6)],
+    ['Direction', interp],
+  ];
+
+  document.getElementById('statsContent').innerHTML = rows.map(
+    ([k, v]) => `<div class="stat-row"><span class="label">${k}</span><span class="value">${v}</span></div>`
+  ).join('');
+}
+
+function renderLegend(mode) {
+  const l = tileData.legend[mode];
+  document.getElementById('legendTitle').textContent = l.title;
+  let html = '';
+
+  if (mode === 'slope') {
+    html += `<div class="legend-gradient"></div>`;
+    html += `<div class="legend-gradient-labels">
+              <span>${l.stops[0].label}</span>
+              <span>${l.stops[1].label}</span>
+              <span>${l.stops[2].label}</span>
+             </div>`;
+    html += `<div class="legend-row" style="font-size:11px;color:var(--muted);">
+              <span>Green = greening · Red = browning</span>
+             </div>`;
+  } else {
+    l.stops.forEach(stop => {
+      html += `<div class="legend-row">
+                 <span class="legend-swatch" style="background:${stop.color}"></span>
+                 <span>${stop.label}</span>
+               </div>`;
+    });
+  }
+  document.getElementById('legendContent').innerHTML = html;
+}
+
+function updateTimestamp(iso) {
+  if (!iso) return;
+  const d = new Date(iso);
+  document.getElementById('timestamp').textContent = `Generated: ${d.toLocaleString()}`;
+}
+
+document.getElementById('fitBtn').addEventListener('click', () => {
+  map.fitBounds(AU_BBOX);
+});
+
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+if (menuToggle && mainNav) {
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('mobile-open');
+  });
+}
+</script>
+</body>
+</html>

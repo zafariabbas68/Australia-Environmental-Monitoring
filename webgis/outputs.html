@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0a111f" />
 <title>Outputs — Australia Environmental Monitoring</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,93 +20,95 @@
       <p>Burned area · Fire · LST · Land cover · NDVI · Forest loss</p>
     </div>
   </div>
-  <nav class="nav">
+  <nav class="nav" id="mainNav">
     <a href="index.html" class="nav-link">🗺️ Map</a>
     <a href="outputs.html" class="nav-link active">🖼️ Outputs</a>
     <a href="report.html" class="nav-link">📄 Report</a>
+    <a href="trends/" class="nav-link">📈 Trends</a>
   </nav>
-  <div class="actions"></div>
+  <div class="actions">
+    <button class="menu-toggle" id="menuToggle" title="Menu" aria-label="Open menu">☰</button>
+  </div>
 </header>
 
 <main class="page">
-
-  <section class="page-hero">
+  <div class="page-hero">
     <span class="eyebrow">Maps &amp; Visualisations</span>
     <h1>Project Outputs</h1>
-    <p>Seven satellite-derived maps covering the Australian continent. Each layer captures a distinct environmental signal — click any card to expand it full-screen.</p>
-  </section>
+    <p>Six satellite-derived maps covering the Australian continent. Each layer captures a distinct environmental signal — tap any card to expand it full-screen.</p>
+  </div>
 
   <section class="gallery">
 
     <article class="map-card">
       <div class="thumb-wrap">
-        <img class="thumb" src="images/LULC_Australia_2022.png" alt="Land Cover 2022">
+        <img class="thumb" src="images/LULC_Australia_2022.png" alt="Land Cover 2022" loading="lazy">
         <span class="thumb-tag">Land Cover</span>
       </div>
       <div class="body">
         <div class="meta">MODIS MCD12C1 · 500 m · 2022</div>
         <h3>🌍 Land Cover 2022</h3>
-        <p>Eight aggregated IGBP classes derived from the MODIS annual land-cover product. Captures the broad ecological zonation of Australia — from tropical forests in the north to arid shrublands in the interior.</p>
+        <p>Eight aggregated IGBP classes derived from the MODIS annual land-cover product. Captures the broad ecological zonation of Australia.</p>
       </div>
     </article>
 
     <article class="map-card">
       <div class="thumb-wrap">
-        <img class="thumb" src="images/NDVI_Australia_Mean.png" alt="NDVI Mean">
+        <img class="thumb" src="images/NDVI_Australia_Mean.png" alt="NDVI Mean" loading="lazy">
         <span class="thumb-tag">Vegetation</span>
       </div>
       <div class="body">
-        <div class="meta">MODIS MOD13A2 · 1 km · 2010–2021 mean</div>
+        <div class="meta">MODIS MOD13A2 · 1 km · 2010–2021</div>
         <h3>🌿 NDVI Mean (2010–2021)</h3>
-        <p>Twelve-year mean of the Normalized Difference Vegetation Index. Bright greens mark dense vegetation while browns indicate bare soil and deserts — revealing the contrast between coastal productive zones and the arid interior.</p>
+        <p>Twelve-year mean of the Normalized Difference Vegetation Index. Reveals the contrast between coastal productive zones and the arid interior.</p>
       </div>
     </article>
 
     <article class="map-card">
       <div class="thumb-wrap">
-        <img class="thumb" src="images/LST_Australia_2019.png" alt="Land Surface Temperature 2019">
+        <img class="thumb" src="images/LST_Australia_2019.png" alt="Land Surface Temperature 2019" loading="lazy">
         <span class="thumb-tag">Temperature</span>
       </div>
       <div class="body">
-        <div class="meta">MODIS MOD11A1 · 1 km · 2019 daytime mean</div>
+        <div class="meta">MODIS MOD11A1 · 1 km · 2019</div>
         <h3>🌡️ Land Surface Temperature 2019</h3>
-        <p>Mean daytime land surface temperature in degrees Celsius. Hotspots reach above 45 °C in the central deserts and the Pilbara, while cooler coastal regions reflect maritime influence and vegetation cover.</p>
+        <p>Mean daytime land surface temperature in °C. Hotspots reach above 45 °C in the central deserts and the Pilbara.</p>
       </div>
     </article>
 
     <article class="map-card">
       <div class="thumb-wrap">
-        <img class="thumb" src="images/Burned_Area_2021.png" alt="Burned Area 2021">
+        <img class="thumb" src="images/Burned_Area_2021.png" alt="Burned Area 2021" loading="lazy">
         <span class="thumb-tag">Fire</span>
       </div>
       <div class="body">
         <div class="meta">MODIS MCD64A1 · 500 m · 2021</div>
         <h3>🔥 Burned Area 2021</h3>
-        <p>Maximum burn-date composite for 2021. Colours represent the day of year the fire occurred — pale yellows are early-season burns, deep reds are late-season burns. Reveals the annual fire cycle across northern savannas.</p>
+        <p>Maximum burn-date composite for 2021. Pale yellows are early-season burns, deep reds are late-season. Reveals the annual fire cycle across northern savannas.</p>
       </div>
     </article>
 
     <article class="map-card">
       <div class="thumb-wrap">
-        <img class="thumb" src="images/Forest_Loss_2020_2022.png" alt="Forest Loss">
+        <img class="thumb" src="images/Forest_Loss_2020_2022.png" alt="Forest Loss" loading="lazy">
         <span class="thumb-tag">Forest</span>
       </div>
       <div class="body">
         <div class="meta">Hansen GFC v1.11 · 30 m · 2020–2022</div>
         <h3>🌲 Forest Loss 2020–2022</h3>
-        <p>Stand-replacement forest loss over three years. Concentrations appear along the east coast (NSW, Queensland) and in southwest WA — areas subject to both bushfires and land clearing.</p>
+        <p>Stand-replacement forest loss over three years. Concentrations appear along the east coast (NSW, Queensland) and in southwest WA.</p>
       </div>
     </article>
 
     <article class="map-card">
       <div class="thumb-wrap">
-        <img class="thumb" src="images/Fire_Categories_2023.png" alt="Fire Categories">
+        <img class="thumb" src="images/Fire_Categories_2023.png" alt="Fire Categories" loading="lazy">
         <span class="thumb-tag">Fire</span>
       </div>
       <div class="body">
         <div class="meta">VIIRS SNPP · 375 m · Oct 2023</div>
         <h3>🔥 Fire Temperature Classes Oct 2023</h3>
-        <p>Active-fire detections classified by brightness temperature. Five classes — cool (yellow) through extreme (dark red) — highlight the intense fires that occurred across northern Australia in October 2023.</p>
+        <p>Active-fire detections classified by brightness temperature. Five classes — cool (yellow) through extreme (dark red).</p>
       </div>
     </article>
 
@@ -117,6 +120,14 @@
 </div>
 
 <script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('mobile-open');
+    });
+  }
+
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightboxImg');
   document.querySelectorAll('.thumb').forEach(img => {
