@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-21T13:02:08.754796Z",
+  "generated_at": "2026-09-23T15:42:14.521893Z",
   "tiles": {
-    "burned": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/8a80d6e7b9feb4c25a4ebac0d15a5101-fbd0a9731f1a6f680a38a5bb985e5edc/tiles/{z}/{x}/{y}",
-    "fire": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/641218757cf9f089597af8f7a5317710-40256d0e024ca4aec8fdbcb1bf543f3d/tiles/{z}/{x}/{y}",
-    "fire_count": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/fcefeb4712bcb131a2d5127deb943b39-0331f21e9c1beeb56ca3775867ac01a3/tiles/{z}/{x}/{y}",
-    "lst": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/2bf8556f324f3fd394d60044901e5626-909050dd450a62fb5c69382055fdcbe9/tiles/{z}/{x}/{y}",
-    "lulc": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/122a362491116bd769aeeae2cc866105-28bddec1aa1b19d5063ca8151ad5ff8e/tiles/{z}/{x}/{y}",
-    "ndvi": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/f835d8d7deb3550be5f030803bfc408a-da2cb5a7d5718bb1f8ca6a3598c853f8/tiles/{z}/{x}/{y}",
-    "forest_loss": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/d2fb4df73dd5784f53a2a3ed147aac92-12f5c5162c448a0eb4f1d82b606acc5d/tiles/{z}/{x}/{y}"
+    "burned": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/8a80d6e7b9feb4c25a4ebac0d15a5101-b1b63d90f05d12ee1e1ecd82d96fae4a/tiles/{z}/{x}/{y}",
+    "fire": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/a4b02023007eb5296fc143e97f516d1c-e91f9113c2d507c0fe6d709fade000fb/tiles/{z}/{x}/{y}",
+    "fire_count": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/f50725918b73612ea5ff47c6e1dcb422-d6aec005f7369c1e3d10dc0ec9f12fa5/tiles/{z}/{x}/{y}",
+    "lst": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/a011a6caab45f532364731686c84a299-9ff5301ef8cfd9823d13bd9d1744dd44/tiles/{z}/{x}/{y}",
+    "lulc": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/c6402af200ee7eafaa7b28e852a0d587-3d14a317f9be6d45efc329d0ef2b4a5d/tiles/{z}/{x}/{y}",
+    "ndvi": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/f835d8d7deb3550be5f030803bfc408a-c342ee79de34173bf4f3ec0379ea2219/tiles/{z}/{x}/{y}",
+    "forest_loss": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/d2fb4df73dd5784f53a2a3ed147aac92-8510a00b8d3f0e484e24b6b8bb5a2d09/tiles/{z}/{x}/{y}"
   }
 }

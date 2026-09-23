@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-09-23T15:43:39.614460Z",
+  "period": "2015-2024",
+  "variable": "NDVI",
+  "method": "OLS slope on QA-masked MODIS MOD13A2",
+  "threshold": 0.001,
+  "statistics": {
+    "slope_max": 0.02,
+    "slope_mean": 0.0020695805553179215,
+    "slope_min": -0.02,
+    "slope_stdDev": 0.004416026777893524
+  },
+  "tiles": {
+    "slope": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/40a79e054da8131016e375b5ad62a26f-1f28d25de35848a6b48e3ffbd6af6234/tiles/{z}/{x}/{y}",
+    "class": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/25b5dfff6a34de6f2f650e177459782a-5311320ce85ff4633989bc04ddb4377b/tiles/{z}/{x}/{y}"
+  },
+  "legend": {
+    "slope": {
+      "title": "NDVI trend (unit/year)",
+      "min": -0.005,
+      "max": 0.005,
+      "stops": [
+        {
+          "value": -0.005,
+          "color": "#c0392b",
+          "label": "-0.005"
+        },
+        {
+          "value": 0.0,
+          "color": "#ffffff",
+          "label": "0"
+        },
+        {
+          "value": 0.005,
+          "color": "#27ae60",
+          "label": "+0.005"
+        }
+      ]
+    },
+    "class": {
+      "title": "Trend significance",
+      "stops": [
+        {
+          "value": 0,
+          "color": "#95a5a6",
+          "label": "No trend (|slope| < 0.001)"
+        },
+        {
+          "value": 1,
+          "color": "#27ae60",
+          "label": "Significant increase"
+        },
+        {
+          "value": 2,
+          "color": "#c0392b",
+          "label": "Significant decrease"
+        }
+      ]
+    }
+  }
+}
