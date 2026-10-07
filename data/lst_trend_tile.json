@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-23T17:28:23.953111Z",
+  "generated_at": "2026-10-07T15:17:05.950398Z",
   "period": "2005-2023",
   "variable": "LST",
   "units": "Celsius per year",
   "method": "Theil-Sen slope on monthly LST anomalies",
   "threshold": 0.02,
   "statistics": {
-    "slope_mean": 0.0,
+    "slope_mean": 0.025,
     "slope_min": -0.15,
     "slope_max": 0.15,
-    "slope_stdDev": 0.02
+    "slope_stdDev": 0.05
   },
   "tiles": {
-    "slope": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/deb7cc34691a96042713d0e67e6e4c12-24212ae53637489bfaf6fbdabbce53ea/tiles/{z}/{x}/{y}",
-    "class": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/54338cf7f39c9a723b5cba300bb4f5c2-4a2ae962ad6d48e2a79011e6670ef144/tiles/{z}/{x}/{y}"
+    "slope": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/d4830364b3d826faaa4d75c083918105-25049aa1f304f9457f8b684fb2b4103c/tiles/{z}/{x}/{y}",
+    "class": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/12c0829a44e5653b5c38eb8420bcc985-fe636fd7ebf09ad16bdca08ab8637e9a/tiles/{z}/{x}/{y}"
   },
   "legend": {
     "slope": {
