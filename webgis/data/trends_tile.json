@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-23T15:43:39.614460Z",
+  "generated_at": "2026-10-07T14:51:30.806409Z",
   "period": "2015-2024",
   "variable": "NDVI",
   "method": "OLS slope on QA-masked MODIS MOD13A2",
   "threshold": 0.001,
   "statistics": {
     "slope_max": 0.02,
-    "slope_mean": 0.0020695805553179215,
+    "slope_mean": 0.002069580555317922,
     "slope_min": -0.02,
     "slope_stdDev": 0.004416026777893524
   },
   "tiles": {
-    "slope": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/40a79e054da8131016e375b5ad62a26f-1f28d25de35848a6b48e3ffbd6af6234/tiles/{z}/{x}/{y}",
-    "class": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/25b5dfff6a34de6f2f650e177459782a-5311320ce85ff4633989bc04ddb4377b/tiles/{z}/{x}/{y}"
+    "slope": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/0e4a6e3447687b27324cca2f9f1d8bbc-423daa7a2ba0b9c0e0e18da4d6ea72db/tiles/{z}/{x}/{y}",
+    "class": "https://earthengine.googleapis.com/v1/projects/99406868390/maps/ea16c061821689e0e936ff71d0ea7c0e-c38de2b59e42cb6bcc235d4d0d578464/tiles/{z}/{x}/{y}"
   },
   "legend": {
     "slope": {
